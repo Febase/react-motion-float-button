@@ -1,1 +1,8 @@
 /* reset or 공용 CSS 작성 */
+
+body {
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  background-color: blue;
+}
