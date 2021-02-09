@@ -31,13 +31,19 @@ function FloatingGroup(props: Props): ReactElement {
 
   return (
     <Container style={containerStyle} direction={direction}>
-      <RootButton style={rootButtonContainerStyle} size={size} spacing={spacing/2}>{rootButtonElement}</RootButton>
+      <RootButton 
+        style={rootButtonContainerStyle} 
+        size={size} 
+        spacing={spacing/2}
+      >
+        {rootButtonElement}
+      </RootButton>
       {renderChildren}
     </Container>
   );
 }
 
-interface Container {
+interface ContainerStyledType {
   direction: Direction;
 }
 
@@ -46,7 +52,7 @@ interface ButtonContainer {
   spacing: number;
 }
 
-const Container = styled.ul<Container>`
+const Container = styled.ul<ContainerStyledType>`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -75,7 +81,6 @@ const ItemButton = styled.li<ButtonContainer>`
   width: ${({ size }) => `${size}`}px;
   height: ${({ size }) => `${size}`}px;
   margin: ${({ spacing }) => spacing}px;
-
   border-radius: 30px;
   display: flex;
 `;

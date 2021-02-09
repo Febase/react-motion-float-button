@@ -23,11 +23,11 @@ function FloatMenuItemButton(props: Props): ReactElement {
   );
 }
 
-interface Container {
+interface ContainerStyledType {
   buttonColor: string;
 }
 
-const Container = styled.button<Container>`
+const Container = styled.button<ContainerStyledType>`
   display: flex;
   justify-content: center;
   align-items: center;

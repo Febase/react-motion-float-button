@@ -19,10 +19,22 @@ function App(): ReactElement {
   return (
     <Container>
       <Wrapper>
-        {renderFloatButton(Direction.BOTTOM)}
-        {renderFloatButton(Direction.TOP)}
-        {renderFloatButton(Direction.LEFT)}
-        {renderFloatButton(Direction.RIGHT)}
+        <ItemWrapper>
+          Direction.BOTTOM
+          {renderFloatButton(Direction.BOTTOM)}
+        </ItemWrapper>
+        <ItemWrapper>
+          Direction.TOP
+          {renderFloatButton(Direction.TOP)}
+        </ItemWrapper>
+        <ItemWrapper>
+          Direction.LEFT
+          {renderFloatButton(Direction.LEFT)}
+        </ItemWrapper>
+        <ItemWrapper>
+          Direction.RIGHT
+          {renderFloatButton(Direction.RIGHT)}
+        </ItemWrapper>
       </Wrapper>
     </Container>
   );
@@ -43,6 +55,14 @@ const Wrapper = styled.div`
   justify-content: center;
   align-items: center;
   padding-bottom: 100px;
+`;
+
+const ItemWrapper = styled.div` 
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 20px;
 `;
 
 export default App;
