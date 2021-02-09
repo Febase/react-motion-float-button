@@ -1,6 +1,7 @@
 import { Direction, Size } from '../types'
-import React, { ReactElement } from 'react';
-import styled, { CSSProperties } from 'styled-components';
+import React, { CSSProperties, ReactElement } from 'react';
+
+import styled from '@emotion/styled';
 
 interface Props {
   children: JSX.Element[];
@@ -31,13 +32,19 @@ function FloatingGroup(props: Props): ReactElement {
 
   return (
     <Container style={containerStyle} direction={direction}>
-      <RootButton style={rootButtonContainerStyle} size={size} spacing={spacing/2}>{rootButtonElement}</RootButton>
+      <RootButton 
+        style={rootButtonContainerStyle} 
+        size={size} 
+        spacing={spacing/2}
+      >
+        {rootButtonElement}
+      </RootButton>
       {renderChildren}
     </Container>
   );
 }
 
-interface Container {
+interface ContainerStyledType {
   direction: Direction;
 }
 
@@ -46,7 +53,7 @@ interface ButtonContainer {
   spacing: number;
 }
 
-const Container = styled.ul<Container>`
+const Container = styled.ul<ContainerStyledType>`
   display: flex;
   justify-content: center;
   align-items: center;
@@ -54,6 +61,7 @@ const Container = styled.ul<Container>`
   list-style: none;
 `;
 
+// @ts-ignore
 const RootButton = styled((props) => <li><button {...props}></button></li>)<ButtonContainer>`
   border: none;
   width: ${({ size }) => `${size}`}px;
@@ -75,7 +83,6 @@ const ItemButton = styled.li<ButtonContainer>`
   width: ${({ size }) => `${size}`}px;
   height: ${({ size }) => `${size}`}px;
   margin: ${({ spacing }) => spacing}px;
-
   border-radius: 30px;
   display: flex;
 `;

@@ -1,5 +1,6 @@
-import React, {ReactElement} from 'react';
-import styled, {CSSProperties} from 'styled-components';
+import React, {CSSProperties, ReactElement} from 'react';
+
+import styled from '@emotion/styled';
 
 interface Props {
   containerStyle?: CSSProperties;
@@ -23,11 +24,11 @@ function FloatMenuItemButton(props: Props): ReactElement {
   );
 }
 
-interface Container {
+interface ContainerStyledType {
   buttonColor: string;
 }
 
-const Container = styled.button<Container>`
+const Container = styled.button<ContainerStyledType>`
   display: flex;
   justify-content: center;
   align-items: center;
