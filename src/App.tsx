@@ -1,7 +1,7 @@
 import { Direction, FloatMenuItemButton, FloatingGroup, Size } from './FloatButton'
 import React, { ReactElement } from 'react';
 
-import styled from 'styled-components';
+import styled from '@emotion/styled';
 
 function App(): ReactElement {
   const renderFloatButton = (direction: Direction) => (

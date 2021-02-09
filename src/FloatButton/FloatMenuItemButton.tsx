@@ -1,5 +1,6 @@
-import React, {ReactElement} from 'react';
-import styled, {CSSProperties} from 'styled-components';
+import React, {CSSProperties, ReactElement} from 'react';
+
+import styled from '@emotion/styled';
 
 interface Props {
   containerStyle?: CSSProperties;

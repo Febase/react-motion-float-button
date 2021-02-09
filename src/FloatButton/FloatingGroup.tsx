@@ -1,6 +1,7 @@
 import { Direction, Size } from '../types'
-import React, { ReactElement } from 'react';
-import styled, { CSSProperties } from 'styled-components';
+import React, { CSSProperties, ReactElement } from 'react';
+
+import styled from '@emotion/styled';
 
 interface Props {
   children: JSX.Element[];
@@ -60,6 +61,7 @@ const Container = styled.ul<ContainerStyledType>`
   list-style: none;
 `;
 
+// @ts-ignore
 const RootButton = styled((props) => <li><button {...props}></button></li>)<ButtonContainer>`
   border: none;
   width: ${({ size }) => `${size}`}px;
