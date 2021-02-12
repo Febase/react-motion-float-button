@@ -1,19 +1,17 @@
-import { Direction, FloatMenuItemButton, FloatingGroup, Size } from './FloatButton'
+import { Direction, FloatMenuItemButton, FloatingGroup, Size } from './FloatButton';
 import React, { ReactElement } from 'react';
 
 import styled from '@emotion/styled';
+import { Twitter } from '@emotion-icons/simple-icons';
+import { Share, Facebook, Instagram } from '@emotion-icons/remix-fill';
 
 function App(): ReactElement {
   const renderFloatButton = (direction: Direction) => (
-    <FloatingGroup 
-      size={Size.REGULAR} 
-      direction={direction}
-      rootButtonElement="Root"
-    >
-      <FloatMenuItemButton icon="1" />
-      <FloatMenuItemButton icon="2" />
-      <FloatMenuItemButton icon="3" />
-      <FloatMenuItemButton icon="4" />
+    <FloatingGroup size={Size.REGULAR} direction={direction} rootButtonElement="">
+      <FloatMenuItemButton icon={<Twitter size="50%" />} buttonColor="#00ACEE" />
+      <FloatMenuItemButton icon={<Instagram size="50%" />} buttonColor="#4f5bd5" />
+      <FloatMenuItemButton icon={<Facebook size="50%" />} buttonColor="#3B5998" />
+      <FloatMenuItemButton icon={<Share size="50%" />} buttonColor="#16dbc2" />
     </FloatingGroup>
   );
   return (
@@ -27,14 +25,16 @@ function App(): ReactElement {
           Direction.TOP
           {renderFloatButton(Direction.TOP)}
         </ItemWrapper>
-        <ItemWrapper>
-          Direction.LEFT
-          {renderFloatButton(Direction.LEFT)}
-        </ItemWrapper>
-        <ItemWrapper>
-          Direction.RIGHT
-          {renderFloatButton(Direction.RIGHT)}
-        </ItemWrapper>
+        <HorizonWrapper>
+          <ItemWrapper>
+            Direction.LEFT
+            {renderFloatButton(Direction.LEFT)}
+          </ItemWrapper>
+          <ItemWrapper>
+            Direction.RIGHT
+            {renderFloatButton(Direction.RIGHT)}
+          </ItemWrapper>
+        </HorizonWrapper>
       </Wrapper>
     </Container>
   );
@@ -46,7 +46,6 @@ const Container = styled.div`
   width: 100%;
   height: 100vh;
   display: flex;
-  background-color: #f2f2f2;
 `;
 
 const Wrapper = styled.div`
@@ -57,7 +56,15 @@ const Wrapper = styled.div`
   padding-bottom: 100px;
 `;
 
-const ItemWrapper = styled.div` 
+const ItemWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 20px;
+`;
+
+const HorizonWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;

@@ -1,22 +1,16 @@
-import React, {CSSProperties, ReactElement} from 'react';
+import React, { CSSProperties, ReactElement } from 'react';
 
 import styled from '@emotion/styled';
-
 interface Props {
   containerStyle?: CSSProperties;
   buttonColor?: string;
-  icon?: JSX.Element | string;
+  icon?: JSX.Element | React.ReactElement;
   onClick?: () => void;
 }
 
 function FloatMenuItemButton(props: Props): ReactElement {
-  const { 
-    containerStyle,
-    icon = 'icon', 
-    buttonColor = '#000', 
-    onClick = () => console.log('Clicked!')
-  } = props;
-  
+  const { containerStyle, icon = 'icon', buttonColor = '#ffffff', onClick = () => console.log('Clicked!') } = props;
+
   return (
     <Container style={containerStyle} onClick={onClick} buttonColor={buttonColor}>
       {icon}
@@ -34,9 +28,10 @@ const Container = styled.button<ContainerStyledType>`
   align-items: center;
   flex: 1;
   border: none;
-  background-color: ${({buttonColor}) => buttonColor};
+  background-color: ${({ buttonColor }) => buttonColor};
   color: #fff;
-  border-radius: 30px;
+  border-radius: 50%;
+  box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.25);
 `;
 
 export default FloatMenuItemButton;
