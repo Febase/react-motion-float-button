@@ -1,7 +1,7 @@
-import { Direction, Size } from '../types'
+import { Direction, Size } from '../types';
 import React, { CSSProperties, ReactElement } from 'react';
-
 import styled from '@emotion/styled';
+import { Add } from '@emotion-icons/remix-line';
 
 interface Props {
   children: JSX.Element[];
@@ -14,30 +14,26 @@ interface Props {
 }
 
 function FloatingGroup(props: Props): ReactElement {
-  const { 
-    containerStyle, 
-    size = Size.REGULAR, 
-    children, 
-    direction = Direction.LEFT, 
+  const {
+    containerStyle,
+    size = Size.REGULAR,
+    children,
+    direction = Direction.LEFT,
     rootButtonElement = <li>main</li>,
     rootButtonContainerStyle,
     spacing = 20,
   } = props;
 
   const renderChildren = children.map((child, index) => (
-    <ItemButton key={index} size={size} spacing={spacing/2}>
+    <ItemButton key={index} size={size} spacing={spacing / 2}>
       {child}
     </ItemButton>
   ));
 
   return (
     <Container style={containerStyle} direction={direction}>
-      <RootButton 
-        style={rootButtonContainerStyle} 
-        size={size} 
-        spacing={spacing/2}
-      >
-        {rootButtonElement}
+      <RootButton style={rootButtonContainerStyle} size={size} spacing={spacing / 2}>
+        <Add size="70%" color="#397CCA" />
       </RootButton>
       {renderChildren}
     </Container>
@@ -57,21 +53,25 @@ const Container = styled.ul<ContainerStyledType>`
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: ${({direction}) => direction};
+  flex-direction: ${({ direction }) => direction};
   list-style: none;
+  padding: 0;
 `;
 
 // @ts-ignore
-const RootButton = styled((props) => <li><button {...props}></button></li>)<ButtonContainer>`
+const RootButton = styled((props) => (
+  <li>
+    <button {...props}></button>
+  </li>
+))<ButtonContainer>`
   border: none;
   width: ${({ size }) => `${size}`}px;
   height: ${({ size }) => `${size}`}px;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #000;
-  color: #fff;
-  border-radius: 30px;
+  background-color: #fff;
+  border-radius: 50%;
   margin: ${({ spacing }) => spacing}px;
 
   &:focus {
@@ -83,7 +83,7 @@ const ItemButton = styled.li<ButtonContainer>`
   width: ${({ size }) => `${size}`}px;
   height: ${({ size }) => `${size}`}px;
   margin: ${({ spacing }) => spacing}px;
-  border-radius: 30px;
+  border-radius: 50%;
   display: flex;
 `;
 
