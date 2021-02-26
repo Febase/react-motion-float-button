@@ -1,7 +1,8 @@
 import { Direction, Size } from '../types';
 import React, { CSSProperties, ReactElement } from 'react';
-import styled from '@emotion/styled';
+
 import { Add } from '@emotion-icons/remix-line';
+import styled from '@emotion/styled';
 
 interface Props {
   children: JSX.Element[];
@@ -19,7 +20,7 @@ function FloatingGroup(props: Props): ReactElement {
     size = Size.REGULAR,
     children,
     direction = Direction.LEFT,
-    rootButtonElement = <li>main</li>,
+    rootButtonElement,
     rootButtonContainerStyle,
     spacing = 20,
   } = props;
@@ -30,10 +31,14 @@ function FloatingGroup(props: Props): ReactElement {
     </ItemButton>
   ));
 
+  const renderRootButtonElement = rootButtonElement || (
+    <Add size="70%" color="#397CCA" />
+  );
+
   return (
     <Container style={containerStyle} direction={direction}>
       <RootButton style={rootButtonContainerStyle} size={size} spacing={spacing / 2}>
-        <Add size="70%" color="#397CCA" />
+        <RootButtonWrapper>{renderRootButtonElement}</RootButtonWrapper>
       </RootButton>
       {renderChildren}
     </Container>
@@ -72,10 +77,23 @@ const RootButton = styled((props) => (
   align-items: center;
   background-color: #fff;
   border-radius: 50%;
+  cursor: pointer;
   margin: ${({ spacing }) => spacing}px;
 
   &:focus {
     outline: none;
+  }
+`;
+
+const RootButtonWrapper = styled.div`
+    -webkit-transition: -webkit-transform 0.3s ease-in-out;
+    -ms-transition: -ms-transform 0.3s ease-in-out;
+    transition: transform 0.3s ease-in-out;  
+    
+  &:hover {
+    transform:rotate(135deg);
+    -ms-transform:rotate(135deg);
+    -webkit-transform:rotate(135deg);
   }
 `;
 
