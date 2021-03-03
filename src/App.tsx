@@ -1,19 +1,20 @@
 import { Direction, FloatMenuItemButton, FloatingGroup, Size } from './FloatButton';
+import { Facebook, Instagram, Share } from '@emotion-icons/remix-fill';
 import React, { ReactElement } from 'react';
 
-import styled from '@emotion/styled';
 import { Twitter } from '@emotion-icons/simple-icons';
-import { Share, Facebook, Instagram } from '@emotion-icons/remix-fill';
+import styled from '@emotion/styled';
 
 function App(): ReactElement {
   const renderFloatButton = (direction: Direction) => (
-    <FloatingGroup size={Size.REGULAR} direction={direction} rootButtonElement="">
+    <FloatingGroup size={Size.REGULAR} direction={direction}>
       <FloatMenuItemButton icon={<Twitter size="50%" />} buttonColor="#00ACEE" />
       <FloatMenuItemButton icon={<Instagram size="50%" />} buttonColor="#4f5bd5" />
       <FloatMenuItemButton icon={<Facebook size="50%" />} buttonColor="#3B5998" />
       <FloatMenuItemButton icon={<Share size="50%" />} buttonColor="#16dbc2" />
     </FloatingGroup>
   );
+  
   return (
     <Container>
       <Wrapper>
