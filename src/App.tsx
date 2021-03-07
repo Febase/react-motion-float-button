@@ -14,7 +14,7 @@ function App(): ReactElement {
       <FloatMenuItemButton icon={<Share size="50%" />} buttonColor="#16dbc2" />
     </FloatingGroup>
   );
-  
+
   return (
     <Container>
       <Wrapper>
@@ -23,8 +23,8 @@ function App(): ReactElement {
           {renderFloatButton(Direction.BOTTOM)}
         </ItemWrapper>
         <ItemWrapper>
-          Direction.TOP
           {renderFloatButton(Direction.TOP)}
+          Direction.TOP
         </ItemWrapper>
         <HorizonWrapper>
           <ItemWrapper>

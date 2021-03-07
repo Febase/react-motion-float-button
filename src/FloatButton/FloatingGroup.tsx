@@ -1,5 +1,5 @@
 import { Direction, Size } from '../types';
-import React, { CSSProperties, ReactElement } from 'react';
+import React, {CSSProperties, ReactElement, useEffect, useState} from 'react';
 
 import { Add } from '@emotion-icons/remix-line';
 import styled from '@emotion/styled';
@@ -24,9 +24,10 @@ function FloatingGroup(props: Props): ReactElement {
     rootButtonContainerStyle,
     spacing = 20,
   } = props;
+  const [isSpread, toggleSpread] = useState(false);
 
   const renderChildren = children.map((child, index) => (
-    <ItemButton key={index} size={size} spacing={spacing / 2}>
+    <ItemButton key={index} size={size} spacing={spacing / 2} direction={direction} order={index+1} isSpread={isSpread}>
       {child}
     </ItemButton>
   ));
@@ -35,10 +36,15 @@ function FloatingGroup(props: Props): ReactElement {
     <Add size="70%" color="#397CCA" />
   );
 
+  const closeButtonHandler = (isSpread: boolean) => {
+    if(isSpread) toggleSpread(false);
+    return null;
+  }
+
   return (
     <Container style={containerStyle} direction={direction}>
       <RootButton style={rootButtonContainerStyle} size={size} spacing={spacing / 2}>
-        <RootButtonWrapper>{renderRootButtonElement}</RootButtonWrapper>
+        <RootButtonWrapper onMouseEnter={() => toggleSpread(true)} onClick={() => closeButtonHandler(isSpread)} isSpread={isSpread}>{renderRootButtonElement}</RootButtonWrapper>
       </RootButton>
       {renderChildren}
     </Container>
@@ -52,6 +58,13 @@ interface ContainerStyledType {
 interface ButtonContainer {
   size: Size;
   spacing: number;
+  direction: Direction;
+  order: number;
+  isSpread: boolean;
+}
+
+interface ButtonWrapperContainer {
+  isSpread: boolean;
 }
 
 const Container = styled.ul<ContainerStyledType>`
@@ -61,6 +74,7 @@ const Container = styled.ul<ContainerStyledType>`
   flex-direction: ${({ direction }) => direction};
   list-style: none;
   padding: 0;
+  position: relative;
 `;
 
 // @ts-ignore
@@ -85,16 +99,15 @@ const RootButton = styled((props) => (
   }
 `;
 
-const RootButtonWrapper = styled.div`
+const RootButtonWrapper = styled.div<ButtonWrapperContainer>`
     -webkit-transition: -webkit-transform 0.3s ease-in-out;
     -ms-transition: -ms-transform 0.3s ease-in-out;
-    transition: transform 0.3s ease-in-out;  
-    
-  &:hover {
-    transform:rotate(135deg);
-    -ms-transform:rotate(135deg);
-    -webkit-transform:rotate(135deg);
-  }
+    transition: transform 0.3s ease-in-out;
+    z-index: 100;
+    position: relative;
+    transform: ${({isSpread}) => (isSpread ? 'rotate(135deg)' : 'none')};
+    -ms-transform: ${({isSpread}) => (isSpread ? 'rotate(135deg)' : 'none')};
+    -webkit-transform: ${({isSpread}) => (isSpread ? 'rotate(135deg)' : 'none')};
 `;
 
 const ItemButton = styled.li<ButtonContainer>`
@@ -103,6 +116,11 @@ const ItemButton = styled.li<ButtonContainer>`
   margin: ${({ spacing }) => spacing}px;
   border-radius: 50%;
   display: flex;
+  position: absolute;
+  z-index: ${({order}) => 100 - order};
+  top: ${({direction, isSpread, order}) => (((direction === Direction.BOTTOM) && isSpread) ? order * 80 : ((direction === Direction.TOP) && isSpread ? order * (-80) : 0))}px;
+  right: ${({direction, isSpread, order}) => (((direction === Direction.LEFT) && isSpread) ? order * 80 : (((direction === Direction.RIGHT) && isSpread) ? order * (-80) : 0))}px;
+  transition: all 1s ease 0s;
 `;
 
 export default FloatingGroup;
