@@ -79,7 +79,7 @@ const Container = styled.ul<ContainerStyledType>`
 
 // @ts-ignore
 const RootButton = styled((props) => (
-  <li>
+  <li style={{zIndex: 100}}>
     <button {...props}></button>
   </li>
 ))<ButtonContainer>`

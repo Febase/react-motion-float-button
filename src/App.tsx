@@ -22,12 +22,14 @@ function App(): ReactElement {
           Direction.BOTTOM
           {renderFloatButton(Direction.BOTTOM)}
         </ItemWrapper>
-        <ItemWrapper>
+        <ItemWrapper style={{top: '340px',
+          position: 'relative'}}>
           {renderFloatButton(Direction.TOP)}
           Direction.TOP
         </ItemWrapper>
         <HorizonWrapper>
-          <ItemWrapper>
+          <ItemWrapper style={{left: '320px',
+            position: 'relative'}}>
             Direction.LEFT
             {renderFloatButton(Direction.LEFT)}
           </ItemWrapper>
