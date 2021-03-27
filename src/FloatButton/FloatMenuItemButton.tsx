@@ -9,7 +9,7 @@ interface Props {
 }
 
 function FloatMenuItemButton(props: Props): ReactElement {
-  const { containerStyle, icon = 'icon', buttonColor = '#ffffff', onClick = () => console.log('Clicked!') } = props;
+  const { containerStyle, icon = 'icon', buttonColor = '#ffffff', onClick } = props;
 
   return (
     <Container style={containerStyle} onClick={onClick} buttonColor={buttonColor}>
