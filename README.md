@@ -54,7 +54,6 @@ also can customize icons, colors and define functions
 
   return (
     <>
-      <div className="itemWrapper" style={{position:'fixed', bottom:'20px', right:'30px'}}>
         <FloatingGroup size={Size.REGULAR} direction={Direction.TOP} spacing={100}>
           <FloatMenuItemButton
             icon={<Twitter size="50%" />}
@@ -74,7 +73,6 @@ also can customize icons, colors and define functions
             buttonColor="#16dbc2"
           />
         </FloatingGroup>
-      </div>
     </>
   );
 
